@@ -91,7 +91,7 @@ function generateQuestion(questionNum) {
   <main role="main">
     <form action="/some-server-endpoint" method ="post">
       <fieldset name='car-questions'>
-        <legend class="question">${questionNum.question}</legend>
+        <legend class="question"><h1>${questionNum.question}</h1></legend>
         <input class="select" type="radio" name="answer-select" id="ans-1" value="${questionNum.answer1}" checked>
         <label for="ans-1">${questionNum.answer1}</label>
         <br>
@@ -107,10 +107,11 @@ function generateQuestion(questionNum) {
       </fieldset>
         <button type="submit" class="submit-button js-submit-button">Submit</button> 
     </form>
-    <footer role="contentinfo">
+    
+  </main>
+  <footer role="contentinfo">
       <span>${questionCount + 1}/${STORE.length}</span><span> ${rightAnswerCount} correct ${wrongAnswerCount} incorrect</span>
-    </footer>
-  </main>`;      
+  </footer>`;      
 }
 
 function renderQuestion() {
@@ -137,18 +138,18 @@ function handleNextButtonClick() {
 
 function generateRightAnswer() {
   return`
-    <div class='right-answer'>
+    <div class='right-answer' role='main'>
       <img src=${STORE[questionCount - 1].correctAnswerImage}>
-      <h2>Correct! Great Job! You are ${rightAnswerCount} for ${questionCount}</h2>
+      <h1>Correct! Great Job! You are ${rightAnswerCount} for ${questionCount}</h1>
       <button class='js-next-button next-button'>Next</button>
     </div>`;
 }
 
 function generateWrongAnswer() {
   return`
-    <div class='wrong-answer'>
+    <div class='wrong-answer' role='main'>
       <img src='https://images.unsplash.com/photo-1461724947009-3c626ff3d2bc?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a6285973472b2de5a467fd4dc95b9753&auto=format&fit=crop&w=500&q=60' alt='broken down car'>
-      <h2>Sorry, the correct answer is ${STORE[questionCount - 1].correctAnswer}.  You are ${rightAnswerCount} for ${questionCount}</h2>
+      <h1>Sorry, the correct answer is ${STORE[questionCount - 1].correctAnswer}.  You are ${rightAnswerCount} for ${questionCount}</h1>
       <button class='js-next-button next-button'>Next</button>
     </div>`;
 }
@@ -165,7 +166,7 @@ function renderWrongAnswer() {
 
 function generateFinalResultsPassed() {
   return `
-  <div class='results-passed'>
+  <div class='results-passed' role='main'>
     <h1>Congratulations you passed the Quizz!
     You answered ${rightAnswerCount} out of ${STORE.length} questions right!</h1>
     ${generateRestartQuizz()}
@@ -174,7 +175,7 @@ function generateFinalResultsPassed() {
 
 function generateFinalResultsFailed() {
   return `
-  <div class='results-failed'>
+  <div class='results-failed' role='main'>
     <h1>Sorry but you failed the Quizz. You answered ${rightAnswerCount} out of ${STORE.length} questions right.</h1>
     ${generateRestartQuizz()}
   </div>`;  
